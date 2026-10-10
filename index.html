@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IELTS Listening Lab</title>
+<style>
+:root{--bg:#f3f6f8;--ink:#14232e;--mut:#5b6b77;--card:#fff;--pri:#0b6e6e;--pri2:#e6f4f3;--ok:#1b7f4b;--bad:#b3261e;--acc:#e8a317;--line:#d6e0e6}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a21;--ink:#e8f0f4;--mut:#97a8b3;--card:#17252e;--pri:#3fbfb8;--pri2:#173a3d;--ok:#5fd394;--bad:#ff8a80;--line:#2a3d48}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3,button,nav a,.tag,small,label,select,input{font-family:system-ui,Segoe UI,Arial,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;position:sticky;top:0;z-index:5}
+header b{font:700 20px system-ui}nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{padding:7px 12px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:14px}nav a.on,nav a:hover{background:var(--pri2);color:var(--pri)}
+main{max-width:920px;margin:0 auto;padding:18px 14px 60px}h1{font-size:28px;margin:.2em 0 .4em}h2{font-size:20px}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.big{font:700 28px system-ui;color:var(--pri)}.tag{display:inline-block;font-size:12px;background:var(--pri2);color:var(--pri);padding:2px 8px;border-radius:99px;margin-right:4px}
+button,.btn{font-size:15px;border:0;border-radius:8px;padding:9px 15px;background:var(--pri);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+button.s{background:var(--pri2);color:var(--pri)}button:hover:not(:disabled){filter:brightness(1.1)}button:active{transform:scale(.97)}button:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.pl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--pri2);padding:10px;border-radius:10px;margin:10px 0}
+.bar{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--pri);transition:width .3s}
+.q{padding:12px 0;border-top:1px solid var(--line)}.op{display:block;padding:6px 8px;border-radius:8px;cursor:pointer}.op:hover{background:var(--pri2)}
+input[type=text],input:not([type]),select{font-size:16px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);max-width:100%;width:260px}
+.lim{color:var(--mut)}.fb{font:14px system-ui;margin-top:6px}.ok{color:var(--ok)}.bad{color:var(--bad)}.tr{background:var(--card);border-left:4px solid var(--pri);padding:6px 14px;margin:8px 0;border-radius:6px}
+mark{background:#ffe08a;color:#111;border-radius:3px;padding:0 2px}.lk{background:none;color:var(--pri);padding:2px 0;text-decoration:underline;font-size:13px}
+.res{background:var(--pri2);padding:14px;border-radius:12px;margin:12px 0}.tm{position:sticky;top:56px;background:var(--acc);color:#111;padding:6px 12px;border-radius:8px;font:700 16px system-ui;z-index:4}
+table{border-collapse:collapse;width:100%;font:14px system-ui}td,th{padding:6px;border-bottom:1px solid var(--line);text-align:left}
+</style></head><body>
+<header><b>🎧 IELTS Listening Lab</b><nav id="nav" aria-label="Main"></nav></header>
+<main id="m"></main>
+<script>
+const $=s=>document.querySelector(s),K='ielts-ll-v1',GB='en-GB',AU='en-AU',US='en-US';
+let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{xp:0,st:0,ld:'',done:{},ty:{},pt:{},mi:[],h:[]};
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const F=(q,a,lim,ty,w)=>({k:'f',q,a,lim,ty,w}),M=(q,o,a,ty,w)=>({k:'m',q,o,a,ty,w}),X=(q,o,a,w)=>({k:'x',q,o,a,ty:'Matching',w});
+const O=['Main hall','Garden room','Room above the library','Pool by the car park'];
+const A=[
+{id:1,p:1,l:'Beginner',t:'Hotel Booking',c:'A guest phones a hotel to reserve a room.',r:.85,s:[[0,GB,"Good morning, Riverside Hotel. How can I help you?"],[1,GB,"Hello. I'd like to book a room for two nights, arriving on the twelfth of May."],[0,GB,"Certainly. Can I have your surname, please?"],[1,GB,"It's Hargreaves. That's H, A, R, G, R, E, A, V, E, S."],[0,GB,"Thank you. And a contact number?"],[1,GB,"Oh seven seven double nine, four five one, two three."],[0,GB,"A double room is eighty pounds a night. Breakfast is extra."],[1,GB,"That's fine. I'll take it."]],
+q:[F('Surname: ___',['hargreaves'],'ONE WORD ONLY','Form completion','The surname is spelled out letter by letter.'),F('Phone number: ___',['07799 451 23'],'NUMBERS ONLY','Form completion','"Double nine" means 99.'),F('Arrival date: ___ May',['12','12th','twelfth'],'A NUMBER','Form completion','"the twelfth of May"'),M('Price per night for a double room?',['£60','£80','£90'],1,'Multiple choice','"eighty pounds"; breakfast has no price given.')]},
+{id:2,p:1,l:'Intermediate',t:'Photography Course',c:'A student enquires about an evening class. Watch for changes.',r:.95,s:[[1,GB,"Evening Classes Office, how can I help?"],[0,AU,"Hi, I'd like to join the photography course. Is it on Thursdays?"],[1,GB,"It was, but it has moved. It now starts on Tuesday the third of June."],[0,AU,"Great. How much is it?"],[1,GB,"One hundred and forty pounds, but students get ten per cent off."],[0,AU,"I'm a student, so that's lovely. Where are the classes?"],[1,GB,"In the Art Block, room fourteen. Please bring your own camera."]],
+q:[F('The course now starts on ___',['tuesday'],'ONE WORD ONLY','Note completion','Distractor: Thursday was the old day.'),F('Student price: £___',['126'],'A NUMBER','Note completion','10% of 140 is 14, so 140 − 14 = 126.'),F('Room number: ___',['14','fourteen'],'A NUMBER','Form completion','"room fourteen"'),F('Students must bring their own ___',['camera'],'ONE WORD ONLY','Sentence completion','"bring your own camera"')]},
+{id:3,p:2,l:'Beginner',t:'Museum Tour',c:'A guide welcomes visitors to a museum.',r:.85,s:[[0,GB,"Welcome to Harbour Museum. Today's tour lasts forty-five minutes. We begin in the Maritime Gallery on the ground floor, then we go upstairs to the Science Room. If you're hungry afterwards, the café is next to the gift shop. You may take photos, but please don't use a flash."]],
+q:[F('Tour length: ___ minutes',['45','forty five'],'A NUMBER','Note completion','"forty-five minutes"'),M('The tour begins in the…',['Science Room','Maritime Gallery','Café'],1,'Multiple choice','Science Room comes later (upstairs).'),M('Where is the café?',['Upstairs','Beside the gift shop','In the Maritime Gallery'],1,'Multiple choice','"next to" = beside (paraphrase).'),F('Visitors must not use a ___',['flash'],'ONE WORD ONLY','Short answer','"please don\'t use a flash"')]},
+{id:4,p:2,l:'Intermediate',t:'Community Centre',c:'A manager explains where activities take place. Match each activity to its place.',r:.95,s:[[1,AU,"Welcome to the community centre. Yoga takes place in the main hall. Pottery used to be in the studio, but it has moved to the room above the library. The chess club meets in the garden room. And finally, swimming is at the pool opposite the car park."]],
+q:[X('Yoga',O,0,'"main hall"'),X('Pottery',O,2,'The studio is the old location (distractor).'),X('Chess club',O,1,'"garden room"'),X('Swimming',O,3,'"opposite the car park"')]},
+{id:5,p:3,l:'Intermediate',t:'Research Topic',c:'A tutor and a student discuss an assignment.',r:.95,s:[[1,GB,"So, have you decided on your research topic?"],[0,GB,"I was going to write about urban gardens, but I've switched to renewable energy."],[1,GB,"Good choice. Remember the deadline is the fourteenth of November."],[0,GB,"And the word limit is two thousand five hundred, isn't it?"],[1,GB,"No, it was increased to three thousand. You'll need at least eight sources."]],
+q:[M('Her final topic is…',['Urban gardens','Renewable energy','Recycling'],1,'Multiple choice','"switched to renewable energy"'),F('Deadline: ___ November',['14','14th','fourteenth'],'A NUMBER','Note completion','"the fourteenth"'),F('Word limit: ___',['3000','three thousand'],'A NUMBER','Note completion','2,500 was the old limit (distractor).'),F('Minimum number of sources: ___',['8','eight'],'A NUMBER','Note completion','"at least eight"')]},
+{id:6,p:3,l:'Advanced',t:'Survey Methods',c:'Two students choose a research method. Opinions change.',r:1,s:[[0,US,"I think interviews give us much richer data."],[1,GB,"True, but questionnaires reach far more people, and they're quicker to analyse."],[0,US,"Yes, although the responses can be quite superficial."],[1,GB,"Then why don't we send a questionnaire first and interview a small group afterwards?"],[0,US,"Fine, let's do that."]],
+q:[M('Why does the first student like interviews?',['Richer data','Lower cost','Faster results'],0,'Multiple choice','"richer data"'),F('Questionnaires are ___ to analyse',['quicker'],'ONE WORD ONLY','Sentence completion','"quicker to analyse"'),F('Questionnaire answers may be ___',['superficial'],'ONE WORD ONLY','Summary completion','"quite superficial"'),M('What do they agree to do?',['Interviews only','Questionnaire, then interviews','Questionnaire only'],1,'Multiple choice','Final decision combines both methods.')]},
+{id:7,p:4,l:'Intermediate',t:'Pollination',c:'A lecturer talks about bees and food crops.',r:.95,s:[[1,US,"Today I'm going to talk about pollination. A single bee can visit up to five thousand flowers in a day. About seventy-five per cent of food crops depend, at least partly, on pollinators. The biggest threat to bees is habitat loss, followed by pesticides. One simple solution is for farmers to plant strips of wildflowers beside their fields."]],
+q:[F('A bee visits up to ___ flowers a day',['5000','five thousand'],'A NUMBER','Note completion','"five thousand"'),F('Crops needing pollinators: ___ %',['75','seventy five'],'A NUMBER','Note completion','"seventy-five per cent"'),M('The biggest threat to bees is…',['Pesticides','Habitat loss','Disease'],1,'Multiple choice','Pesticides come second ("followed by").'),F('Farmers can plant strips of ___',['wildflowers'],'ONE WORD ONLY','Sentence completion','"strips of wildflowers"')]},
+{id:8,p:4,l:'Advanced',t:'Urban Heat Islands',c:'A lecture on why cities are warmer than the countryside.',r:1,s:[[0,GB,"Urban heat islands are areas where cities are up to five degrees warmer than the surrounding countryside. This happens mainly because concrete and asphalt absorb heat during the day and release it at night. Trees help in two ways: they provide shade, and they cool the air through a process called transpiration. Another solution is the cool roof, which is painted white to reflect sunlight."]],
+q:[F('Cities can be up to ___ degrees warmer',['5','five'],'A NUMBER','Note completion','"five degrees"'),M('The main cause is…',['Air pollution','Heat absorbed by concrete and asphalt','Heavy traffic'],1,'Multiple choice','"concrete and asphalt absorb heat"'),F('Trees cool the air through ___',['transpiration'],'ONE WORD ONLY','Sentence completion','"a process called transpiration"'),F('A cool roof is painted ___',['white'],'ONE WORD ONLY','Short answer','"painted white"')]}
+];
+const Q={},nz=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,''),lev=(a,b)=>{let d=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;for(let j=1;j<=b.length;j++){let t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]==b[j-1]?0:1));p=t}}return d[b.length]};
+const val=(n,q)=>q.k=='m'?(document.querySelector(`input[name=r${n}]:checked`)||{}).value:$('#i'+n).value;
+const okq=(q,v)=>{if(v===undefined||v==='')return false;if(q.k!='f')return +v===q.a;const x=nz(v);return q.a.some(a=>{a=nz(a);return x==a||(a.length>5&&lev(x,a)<2)})};
+const ans=q=>q.k=='f'?q.a[0]:q.o[q.a];
+const gen=(a)=>a.q.map(q=>q.ty);
+/* ---------- audio ---------- */
+let P={id:0,i:0,t:0,on:0,pz:0},plays={},T=0,TT=0;const sp=window.speechSynthesis;
+const isF=n=>/female|zira|susan|hazel|samantha|karen|fiona|libby|natasha|serena|victoria|moira/i.test(n),isM=n=>!isF(n)&&/male|daniel|george|david|james|ryan|lee|alex|rishi|oliver/i.test(n);
+function vo(g,lang){const v=sp.getVoices();let c=v.filter(x=>x.lang.replace('_','-').startsWith(lang));if(!c.length)c=v.filter(x=>x.lang.startsWith('en'));const m=c.find(x=>(g?isM:isF)(x.name));return[m||c[0]||null,!!m]}
+const segs=a=>a.s.flatMap(([g,l,t])=>(t.match(/[^.?!]+[.?!]*/g)||[t]).map(x=>[g,l,x.trim()]));
+const dur=a=>{const s=Math.round(a.s.join(' ').split(' ').length/2.4/a.r);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')+' approx.'};
+function ui(id,pc,txt){const b=$('#pb'+id);if(b)b.style.width=pc+'%';const l=$('#pl'+id);if(l&&txt)l.textContent=txt}
+function say(id,msg){const e=$('#ps'+id);if(e)e.textContent=msg}
+function start(id){const a=A.find(x=>x.id==id),sg=segs(a);sp.cancel();const t=++P.t;P={id,i:0,t,on:1,pz:0};plays[id]=(plays[id]||0)+1;$('#pp'+id).textContent='\u23f8 Pause';ui(id,0,'Playing');say(id,'');
+const run=()=>{if(P.t!=t)return;if(P.i>=sg.length){P.on=0;ui(id,100,'Finished');const b=$('#pp'+id);if(b)b.textContent='\u25b6 Play';return}
+const [g,lang,txt]=sg[P.i],u=new SpeechSynthesisUtterance(txt),[vc,mt]=vo(g,lang);let nx=0,wd;
+const adv=()=>{if(nx||P.t!=t)return;nx=1;clearTimeout(wd);const k=P.i;P.i++;ui(id,P.i/sg.length*100,'Playing '+P.i+'/'+sg.length);setTimeout(run,P.i<sg.length&&sg[k][0]!=sg[P.i][0]?500:150)};
+const arm=()=>{wd=setTimeout(()=>P.pz?arm():adv(),txt.length*110/a.r+3000)};
+u.lang=lang;if(vc)u.voice=vc;u.rate=a.r;u.pitch=mt?1:(g?.8:1.15);window._u=u;u.onend=adv;
+u.onerror=e=>{if(e.error=='canceled'||e.error=='interrupted')return;nx=1;clearTimeout(wd);P.on=0;say(id,'Audio could not be played in this browser. Try Chrome, Edge or Safari, or read the transcript after submitting.');const b=$('#pp'+id);if(b)b.textContent='\u25b6 Play'};
+arm();sp.speak(u)};
+setTimeout(run,200)}
+function tg(id,ex){if(!sp){say(id,'Speech synthesis is not supported here. Please use Chrome, Edge, Safari or Firefox.');return}
+if(P.id==id&&P.on){if(P.pz){sp.resume();P.pz=0;$('#pp'+id).textContent='⏸ Pause'}else{sp.pause();P.pz=1;$('#pp'+id).textContent='▶ Resume'}return}
+if(ex&&plays[id]){say(id,'Exam mode: each recording plays only once.');return}start(id)}
+const rp=id=>sp&&start(id);
+let cur=location.hash.slice(1)||'home';
+const nv=h=>{try{if(location.hash!='#'+h)location.hash=h}catch(e){}cur=h;go()};
+const ap=(a,ex)=>`<div class="pl"><button id="pp${a.id}" onclick="tg(${a.id},${ex})">▶ Play</button>${ex?'':`<button class="s" onclick="rp(${a.id})">↻ Replay</button>`}<div class="bar" role="progressbar" aria-label="Playback"><i id="pb${a.id}"></i></div><span id="pl${a.id}" style="font:13px system-ui">${dur(a)}</span></div><small id="ps${a.id}" class="bad"></small>`;
+/* ---------- rendering ---------- */
+function rq(a,i,q,ex){const n=a.id+'_'+i;Q[n]=q;let h=`<div class="q" id="q${n}"><p><b>${i+1}.</b> ${q.q} ${q.lim?`<small class="lim">(${q.lim})</small>`:''}</p>`;
+if(q.k=='m')h+=q.o.map((o,j)=>`<label class="op"><input type="radio" name="r${n}" value="${j}"> ${o}</label>`).join('');
+else if(q.k=='x')h+=`<select id="i${n}" aria-label="${q.q}"><option value="">Choose…</option>${q.o.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select>`;
+else h+=`<input id="i${n}" autocomplete="off" placeholder="Your answer">`;
+return h+(ex||q.k!='f'?'':` <button class="lk" onclick="$('#f${n}').textContent='Hint: starts with “'+Q['${n}'].a[0][0].toUpperCase()+'”, '+Q['${n}'].a[0].length+' characters'">Hint</button>`)+`<div class="fb" id="f${n}"></div></div>`}
+function actHtml(a,ex){return `<div class="c"><h2>${a.t}</h2><span class="tag">Part ${a.p}</span><span class="tag">${a.l}</span><p>${a.c}</p>${ap(a,ex)}${a.q.map((q,i)=>rq(a,i,q,ex)).join('')}<div id="tr${a.id}"></div></div>`}
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+function trans(a){const w=a.q.filter(q=>q.k=='f').flatMap(q=>q.a).filter(x=>isNaN(x)).map(esc);const re=w.length?new RegExp('\\b('+w.join('|')+')\\b','gi'):null;
+return `<h3>Transcript</h3><div class="tr">${a.s.map(([g,l,t])=>`<p><b>${g?'Man':'Woman'}:</b> ${re?t.replace(re,'<mark>$1</mark>'):t}</p>`).join('')}</div><small>Highlighted words are answers. Numbers and paraphrases are explained under each question.</small>`}
+function grade(ids,ex){let c=0,t=0;const today=new Date().toDateString();
+ids.forEach(id=>{const a=A.find(x=>x.id==id);let ac=0;
+a.q.forEach((q,i)=>{const n=id+'_'+i,v=val(n,q),r=okq(q,v);t++;c+=r;ac+=r;const T=S.ty[q.ty]=S.ty[q.ty]||[0,0];T[1]++;T[0]+=r;const PT=S.pt[a.p]=S.pt[a.p]||[0,0];PT[1]++;PT[0]+=r;
+S.mi=S.mi.filter(m=>m.n!=n);const g=v===undefined||v===''?'(no answer)':q.k=='f'?v:q.o[+v];if(!r)S.mi.push({n,g});
+$('#f'+n).innerHTML=r?`<span class="ok">✔ Correct.</span> ${q.w}`:`<span class="bad">✘ Your answer: ${g}. Correct: <b>${ans(q)}</b>.</span> ${q.w}`;
+$('#q'+n).querySelectorAll('input,select').forEach(e=>e.disabled=true)});
+S.done[id]={s:ac,t:a.q.length};S.h.unshift({id,s:ac,t:a.q.length,d:new Date().toLocaleDateString(),m:ex?'Mock test':'Practice'});S.h=S.h.slice(0,30);
+$('#tr'+id).innerHTML=trans(a)});
+const xp=c*10+(c==t?20:0);S.xp+=xp;if(S.ld!=today){S.st=(new Date(S.ld).getTime()==new Date(Date.now()-864e5).setHours(0,0,0,0)||new Date(S.ld).toDateString()==new Date(Date.now()-864e5).toDateString())?S.st+1:1;S.ld=today}sv();return{c,t,xp}}
+const band=(c,t)=>{const r=Math.round(c/t*40),b=[[39,9],[37,8.5],[35,8],[32,7.5],[30,7],[26,6.5],[23,6],[18,5.5],[16,5],[13,4.5],[10,4]].find(x=>r>=x[0]);return{r,b:b?b[1]:'below 4'}};
+const msg=p=>p==1?'Perfect! You really understood the audio.':p>=.75?'Great work. Check the few errors below.':p>=.5?'Good progress. Replay and compare with the transcript.':'Keep going. Listen again and focus on signpost words.';
+const nav=p=>{const L=[['home','Home'],['practice','Practice'],['mock','Mock test'],['mist','Mistakes'],['prog','Progress'],['tips','Tips']];$('#nav').innerHTML=L.map(([k,n])=>`<a href="#${k}" onclick="nv('${k}');return false" class="${k==p||(p=='act'&&k=='practice')?'on':''}">${n}</a>`).join('')};
+const lvl=()=>Math.floor(S.xp/100)+1;
+const acc=o=>o&&o[1]?Math.round(o[0]/o[1]*100)+'%':'–';
+const card=a=>`<div class="c"><span class="tag">Part ${a.p}</span><span class="tag">${a.l}</span><h3>${a.t}</h3><p style="font-size:14px">${a.c}</p>${S.done[a.id]?`<p class="ok">Last score ${S.done[a.id].s}/${S.done[a.id].t}</p>`:''}<a class="btn" href="#act/${a.id}" onclick="nv('act/${a.id}');return false">Start</a></div>`;
+/* ---------- pages ---------- */
+const R={
+home(){const n=Object.keys(S.done).length,tot=Object.values(S.ty).reduce((x,y)=>[x[0]+y[0],x[1]+y[1]],[0,0]);const daily=A[Math.floor(Date.now()/864e5)%A.length];
+const weak=Object.entries(S.ty).filter(e=>e[1][1]>2).sort((a,b)=>a[1][0]/a[1][1]-b[1][0]/b[1][1])[0];const rec=(weak&&A.find(a=>a.q.some(q=>q.ty==weak[0])&&!S.done[a.id]))||A.find(a=>!S.done[a.id])||A[0];
+$('#m').innerHTML=`<h1>Train your ears for IELTS Listening</h1><p>Practise all four parts with recordings, instant feedback and transcripts. Everything is in English; progress is saved only in this browser.</p>
+<div class="g"><div class="c"><div class="big">Level ${lvl()}</div>${S.xp} XP<div class="bar"><i style="width:${S.xp%100}%"></i></div></div><div class="c"><div class="big">${S.st} 🔥</div>day streak</div><div class="c"><div class="big">${n}/${A.length}</div>activities completed</div><div class="c"><div class="big">${acc(tot)}</div>accuracy</div></div>
+<h2>Today</h2><div class="g">${card(daily).replace('<h3>','<h3>Daily challenge: ')}${weak?card(rec).replace('<h3>','<h3>Recommended: '):card(rec).replace('<h3>','<h3>Start here: ')}</div>
+<p><small>Progress is stored with your browser's local storage on this device. It is not an online account and is not synchronised.</small></p>`},
+practice(){const f=sessionStorage.getItem('lv')||'All',ty=sessionStorage.getItem('ty')||'All',types=[...new Set(A.flatMap(gen))];
+const L=['All','Beginner','Intermediate','Advanced'];
+$('#m').innerHTML=`<h1>Practice</h1><p>Pause, replay, use hints and see the transcript after submitting.</p><p>${L.map(x=>`<button class="${x==f?'':'s'}" onclick="sessionStorage.setItem('lv','${x}');R.practice()">${x}</button>`).join(' ')}</p><p><label>Question type: <select onchange="sessionStorage.setItem('ty',this.value);R.practice()">${['All',...types].map(x=>`<option ${x==ty?'selected':''}>${x}</option>`).join('')}</select></label></p>
+${[1,2,3,4].map(p=>{const l=A.filter(a=>a.p==p&&(f=='All'||a.l==f)&&(ty=='All'||a.q.some(q=>q.ty==ty)));return `<h2>Part ${p}: ${['Everyday conversation','Everyday monologue','Academic conversation','Academic lecture'][p-1]}</h2><div class="g">${l.map(card).join('')||'<p>No activities match these filters.</p>'}</div>`}).join('')}`},
+act(id){const a=A.find(x=>x.id==id);if(!a)return nv('practice');
+$('#m').innerHTML=`<a href="#practice" onclick="nv('practice');return false">← All activities</a><h1>Practice mode</h1>${actHtml(a,0)}<p><button id="sb" onclick="subA(${id})">Submit answers</button></p><div id="rs"></div>`},
+mock(){const ids=[2,4,5,8];$('#m').innerHTML=`<h1>Mock test (exam simulation)</h1><p>4 sections, 16 questions, 12 minutes. Each recording plays once. Transcripts and explanations appear only after you submit. This shortened mock is for practice and is not an official test.</p><button id="st" onclick="startMock()">Start mock test</button><div id="mk"></div>`},
+mist(){$('#m').innerHTML=`<h1>Mistake review</h1>${S.mi.length?S.mi.slice().reverse().map(m=>{const [id,i]=m.n.split('_'),a=A.find(x=>x.id==id),q=a.q[i];return `<div class="c" style="margin:8px 0"><span class="tag">${a.t}</span><span class="tag">${q.ty}</span><p><b>${q.q}</b></p><p class="bad">You answered: ${m.g}</p><p class="ok">Correct: ${ans(q)}</p><p>${q.w}</p><a class="btn" href="#act/${id}" onclick="nv('act/${id}');return false">Retry activity</a></div>`}).join(''):'<p>No mistakes recorded. Complete an activity to start tracking.</p>'}`},
+prog(){const row=(k,v)=>`<tr><td>${k}</td><td>${v[0]}/${v[1]}</td><td>${acc(v)}</td></tr>`;
+const bd=[['First step',Object.keys(S.done).length>0],['100 XP',S.xp>=100],['3-day streak',S.st>=3],['Perfect score',Object.values(S.done).some(d=>d.s==d.t)],['All activities',Object.keys(S.done).length==A.length]];
+$('#m').innerHTML=`<h1>My progress</h1><div class="g"><div class="c"><div class="big">Level ${lvl()}</div>${S.xp} XP</div><div class="c"><div class="big">${S.st}</div>day streak</div></div>
+<h2>Badges</h2><p>${bd.map(b=>`<span class="tag" style="opacity:${b[1]?1:.4}">${b[1]?'🏅':'🔒'} ${b[0]}</span>`).join('')}</p>
+<h2>By part</h2><table><tr><th>Part</th><th>Correct</th><th>Accuracy</th></tr>${[1,2,3,4].map(p=>row('Part '+p,S.pt[p]||[0,0])).join('')}</table>
+<h2>By question type</h2><table><tr><th>Type</th><th>Correct</th><th>Accuracy</th></tr>${Object.entries(S.ty).map(([k,v])=>row(k,v)).join('')||'<tr><td colspan=3>No data yet</td></tr>'}</table>
+<h2>Recent activity</h2><table>${S.h.map(h=>`<tr><td>${h.d}</td><td>${(A.find(a=>a.id==h.id)||{}).t}</td><td>${h.m}</td><td>${h.s}/${h.t}</td></tr>`).join('')||'<tr><td>Nothing yet</td></tr>'}</table>
+<p><small>Data is saved in this browser only (local storage).</small></p><button class="s" onclick="if(confirm('Delete all progress on this browser? This cannot be undone.')){localStorage.removeItem(K);location.reload()}">Reset progress</button>`},
+tips(){const t=[['Predict before you listen','Read the questions first. Decide whether you need a name, number, date or adjective.'],['Expect distractors','Speakers often correct themselves: “Thursday… no, Tuesday”. The final version is the answer.'],['Follow signposts','Listen for “firstly”, “however”, “in fact”, “moving on”. They tell you where the next answer is.'],['Watch the word limit','“NO MORE THAN TWO WORDS” means three words is wrong, even if the idea is right.'],['Listen for paraphrases','“next to” = “beside”; “quicker” = “faster”. Questions rarely repeat the audio word for word.'],['Numbers and spelling','Practise double digits (“double nine”), teens vs tens (fourteen / forty) and common spellings. Spelling counts.'],['Check your answers','Check singular/plural forms, capital letters for names and grammar fit.']];
+$('#m').innerHTML=`<h1>IELTS Listening tips</h1>${t.map(x=>`<div class="c" style="margin:8px 0"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}<p><b>Band estimates:</b> the mock converts your raw score to a scale of 40 and uses a commonly published Academic Listening conversion table. Real bands vary by test version.</p>`}};
+function subA(id){const r=grade([id],0);$('#sb').disabled=true;$('#rs').innerHTML=`<div class="res"><h2>Score: ${r.c}/${r.t} · +${r.xp} XP</h2><p>${msg(r.c/r.t)}</p><button onclick="nv('act/${id}')">Retry</button> <button class="s" onclick="nv('mist')">Review mistakes</button> <button class="s" onclick="nv('prog')">My progress</button></div>`;$('#rs').scrollIntoView({behavior:'smooth'})}
+const MK=[2,4,5,8];
+function startMock(){plays={};Q.x=0;$('#st').remove();T=12*60;$('#mk').innerHTML=`<div class="tm" id="tmr">12:00</div>${MK.map(id=>`<h2>Section ${A.find(a=>a.id==id).p}</h2>`+actHtml(A.find(a=>a.id==id),1)).join('')}<p><button id="fs" onclick="finMock()">Submit final answers</button></p><div id="rs"></div>`;
+TT=setInterval(()=>{T--;$('#tmr').textContent=Math.floor(T/60)+':'+String(T%60).padStart(2,'0');if(T<=0)finMock(1)},1000)}
+function finMock(auto){if(!auto&&!confirm('Submit your final answers? You cannot change them afterwards.'))return;clearInterval(TT);sp&&sp.cancel();const r=grade(MK,1),b=band(r.c,r.t);$('#fs').disabled=true;
+$('#rs').innerHTML=`<div class="res"><h2>Score: ${r.c}/${r.t} · +${r.xp} XP</h2><p>Scaled to 40: about ${b.r}/40 → approximate band ${b.b}. This is an estimate from a scaled conversion, not an official IELTS band.</p><p>${msg(r.c/r.t)}</p><button onclick="nv('mock')">New attempt</button> <button class="s" onclick="nv('mist')">Review mistakes</button></div>`;$('#rs').scrollIntoView({behavior:'smooth'})}
+function go(){const [p,a]=cur.split('/');sp&&sp.cancel();clearInterval(TT);P.on=0;plays={};(R[p]||R.home)(a);nav(p);scrollTo(0,0)}
+addEventListener('hashchange',()=>{const h=location.hash.slice(1)||'home';if(h!=cur){cur=h;go()}});sp&&sp.getVoices();try{go()}catch(e){$('#m').textContent='Something went wrong. Reload the page.'}
+</script></body></html>
